@@ -1,0 +1,94 @@
+{
+  "document": {
+    "title": "Trace and Services Portal | Market Insights"
+  },
+  "app": {
+    "brand": "Trace and Services Portal",
+    "brandShort": "Trace and Services Portal",
+    "marketInsights": "Market Insights"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "newsletter": "Newsletter",
+    "trends": "Market Trends",
+    "reports": "Reports"
+  },
+  "market": {
+    "international": "International",
+    "domestic": "Domestic"
+  },
+  "aria": {
+    "mainNav": "Main",
+    "marketScope": "Market scope",
+    "expandSidebar": "Expand sidebar",
+    "collapseSidebar": "Collapse sidebar",
+    "lightMode": "Switch to light mode",
+    "darkMode": "Switch to dark mode",
+    "language": "Language",
+    "switchToEnglish": "Switch to English",
+    "switchToVietnamese": "Switch to Vietnamese"
+  },
+  "lang": {
+    "en": "EN",
+    "vi": "VI"
+  },
+  "chart": {
+    "dateRangeAria": "Date range",
+    "range7d": "7d",
+    "range30d": "30d",
+    "range3m": "3m",
+    "range6m": "6m",
+    "range1y": "1y",
+    "crude": "Crude Oil Historical Price",
+    "fuel": "Fuel Price",
+    "fert": "Fertilizer Price",
+    "agri": "Agriculture Price",
+    "retry": "Retry",
+    "noHistory": "No history for this range / source.",
+    "historicalPrices": "Historical prices — source {{source}}",
+    "srOnlyUnits": "; units vary by series"
+  },
+  "forecast": {
+    "title": "Predictive Price Forecasting",
+    "emptyTitle": "No forecasts",
+    "emptyDescription": "price_forecast may be empty for current filters.",
+    "errorLoad": "Failed to load forecasts"
+  },
+  "pricing": {
+    "emptyTitle": "No pricing data",
+    "emptyDescription": "Check product and price_latest tables.",
+    "errorLoad": "Failed to load pricing",
+    "noRows": "No rows for this group."
+  },
+  "error": {
+    "genericTitle": "Something went wrong",
+    "retry": "Retry"
+  },
+  "placeholder": {
+    "notImplemented": "This section is not implemented yet."
+  },
+  "trends": {
+    "pageTitle": "Market Trends",
+    "pageSubtitle": "Major equity index closes and macro indicators by region.",
+    "stocksTitle": "Major stock indices",
+    "stocksSubtitleRebased": "Indexed to 100 at the first date in range per index — tooltip shows actual close.",
+    "stocksSubtitleAbsolute": "Absolute close price — separate vertical scale per index.",
+    "stocksScaleMode": "Chart scale",
+    "stocksModeRebased": "Relative",
+    "stocksModeAbsolute": "Absolute",
+    "stocksEmpty": "No stock indices in stock_index_master.",
+    "stocksNoPrices": "No close prices for the loaded indices in this range.",
+    "stocksError": "Failed to load index prices.",
+    "retrySeries": "Retry {{code}}",
+    "indicatorsTitle": "Macro indicators by region",
+    "indicatorSelect": "Indicator",
+    "categoryOther": "Other",
+    "regionsLegend": "Regions",
+    "regionsAllSelected": "All regions",
+    "regionsCountSelected": "{{count}} selected",
+    "indicatorsEmpty": "No indicators in the catalog.",
+    "indicatorNoPoints": "No data points for this indicator and region selection.",
+    "indicatorSubtitle": "Observation frequency: {{periodType}}",
+    "indicatorSubtitlePlain": "Regional comparison over time"
+  }
+}

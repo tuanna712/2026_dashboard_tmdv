@@ -1,0 +1,84 @@
+{
+  "product": {
+    "MOGAS95": "Mogas 95",
+    "MOGAS92": "Mogas 92",
+    "DO005S": "Diesel 0.05% S",
+    "FO180CST": "Fuel Oil 180 CST",
+    "MARINE5": "Marine Fuel 5% S",
+    "DATEDBRENT": "Dated Brent",
+    "BRENTKH": "Brent KH",
+    "WTI": "WTI Crude Oil",
+    "BACHHO": "Bach Ho Crude Oil",
+    "RON95III": "Gasoline RON 95-III",
+    "RON92II": "Gasoline RON 92-II",
+    "DO005SII": "Diesel 0.05% S-II",
+    "KO": "Kerosene",
+    "UREPM": "Urea Phu My",
+    "URECM": "Urea Ca Mau",
+    "URENB": "Urea Ninh Binh",
+    "UREHB": "Urea Ha Bac",
+    "RICE50404": "IR 50404 Rice",
+    "RICE5451": "OM 5451 Rice",
+    "RICEDT8": "Dai Thom 8 Rice",
+    "COFFEE": "Coffee",
+    "PEPPER": "Pepper",
+    "LPG": "LPG",
+    "NAPHTHA": "Naphtha",
+    "RON92": "Gasoline RON 92",
+    "RON95": "Gasoline RON 95",
+    "JET": "Jet Fuel",
+    "DO10PPM": "Diesel 10 ppm",
+    "GO005S": "Gas Oil 0.05% S",
+    "GO025S": "Gas Oil 0.25% S",
+    "VLSFO05S": "VLSFO 0.5% S",
+    "FO380CST": "Fuel Oil 380 CST",
+    "FERT-USA": "Fertilizer United States",
+    "FERT-EGY": "Fertilizer Arab Republic of Egypt",
+    "FERT-BRA": "Fertilizer Federative Republic of Brazil",
+    "FERT-CHIN": "Fertilizer China"
+  },
+  "group": {
+    "FUEL": "Refined Petroleum Products",
+    "CRUDE": "Crude Oil",
+    "AGRI": "Agricultural Products",
+    "FERT": "Fertilizers"
+  },
+  "forecastProvider": {
+    "WM": "Wood Mackenzie",
+    "EIA": "U.S. Energy Information Administration",
+    "REUTERS": "Thomson Reuters",
+    "VPI": "Vietnam Petroleum Institute"
+  },
+  "periodType": {
+    "QUARTERLY": "Quarterly",
+    "MONTHLY": "Monthly",
+    "YEARLY": "Yearly"
+  },
+  "stockIndex": {
+    "DJI": "Dow Jones Industrial Average",
+    "SPX": "S&P 500",
+    "COMP": "NASDAQ"
+  },
+  "indicator": {
+    "PMI": "Manufacturing PMI",
+    "GDP_GROWTH": "GDP growth forecast",
+    "INFLATION": "Inflation forecast",
+    "CPI": "Consumer Price Index"
+  },
+  "region": {
+    "USA": "United States",
+    "CHN": "China",
+    "RUS": "Russia",
+    "GBR": "United Kingdom",
+    "DEU": "Germany",
+    "FRA": "France",
+    "CAN": "Canada",
+    "ITA": "Italy",
+    "JPN": "Japan",
+    "EU": "European Union"
+  },
+  "priceSource": {
+    "DOM": "Domestic",
+    "INTL": "International"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "document": {
+    "title": "Ban Thương mại Dịch vụ | Thông tin thị trường"
+  },
+  "app": {
+    "brand": "Thông tin Thương mại Dịch vụ",
+    "brandShort": "Ban Thương mại Dịch vụ",
+    "marketInsights": "Thông tin thị trường"
+  },
+  "nav": {
+    "dashboard": "Bảng điều khiển",
+    "newsletter": "Bản tin",
+    "trends": "Xu hướng", 
+    "reports": "Báo cáo"
+  },
+  "market": {
+    "international": "Quốc tế",
+    "domestic": "Trong nước"
+  },
+  "aria": {
+    "mainNav": "Điều hướng chính",
+    "marketScope": "Phạm vi thị trường",
+    "expandSidebar": "Mở rộng thanh bên",
+    "collapseSidebar": "Thu gọn thanh bên",
+    "lightMode": "Chuyển sang chế độ sáng",
+    "darkMode": "Chuyển sang chế độ tối",
+    "language": "Ngôn ngữ",
+    "switchToEnglish": "Chuyển sang tiếng Anh",
+    "switchToVietnamese": "Chuyển sang tiếng Việt"
+  },
+  "lang": {
+    "en": "EN",
+    "vi": "VI"
+  },
+  "chart": {
+    "dateRangeAria": "Khoảng thời gian",
+    "range7d": "7d",
+    "range30d": "30d",
+    "range3m": "3m",
+    "range6m": "6m",
+    "range1y": "1y",
+    "crude": "Giá dầu thô lịch sử",
+    "fuel": "Giá nhiên liệu",
+    "fert": "Giá phân bón",
+    "agri": "Giá nông sản",
+    "retry": "Thử lại",
+    "noHistory": "Không có dữ liệu.",
+    "historicalPrices": "Giá lịch sử — {{source}}",
+    "srOnlyUnits": "; đơn vị khác nhau theo chuỗi dữ liệu"
+  },
+  "forecast": {
+    "title": "Dự báo giá",
+    "emptyTitle": "Không có dự báo",
+    "emptyDescription": "Bảng price_forecast có thể trống với bộ lọc hiện tại.",
+    "errorLoad": "Không tải được dự báo"
+  },
+  "pricing": {
+    "emptyTitle": "Không có dữ liệu giá",
+    "emptyDescription": "Kiểm tra bảng product và price_latest.",
+    "errorLoad": "Không tải được dữ liệu giá",
+    "noRows": "Không có dòng dữ liệu cho nhóm này."
+  },
+  "error": {
+    "genericTitle": "Đã xảy ra lỗi",
+    "retry": "Thử lại"
+  },
+  "placeholder": {
+    "notImplemented": "Phần này chưa được triển khai."
+  },
+  "trends": {
+    "pageTitle": "Xu hướng thị trường",
+    "pageSubtitle": "Chỉ số cổ phiếu chính (giá đóng cửa) và chỉ số vĩ mô theo quốc gia/khu vực.",
+    "stocksTitle": "Chỉ số cổ phiếu",
+    "stocksSubtitleRebased": "Giá đóng cửa",
+    "stocksSubtitleAbsolute": "Giá đóng tuyệt đối — mỗi chỉ số một thang đứng riêng.",
+    "stocksScaleMode": "Thang biểu đồ",
+    "stocksModeRebased": "Tương đối",
+    "stocksModeAbsolute": "Tuyệt đối",
+    "stocksEmpty": "Không có chỉ số trong stock_index_master.",
+    "stocksNoPrices": "Không có giá đóng cho các chỉ số đã tải trong khoảng này.",
+    "stocksError": "Không tải được giá chỉ số.",
+    "retrySeries": "Thử lại {{code}}",
+    "indicatorsTitle": "Chỉ số vĩ mô",
+    "indicatorSelect": "Chỉ số",
+    "categoryOther": "Khác",
+    "regionsLegend": "Khu vực / quốc gia",
+    "regionsAllSelected": "Tất cả khu vực",
+    "regionsCountSelected": "Đã chọn {{count}}",
+    "indicatorsEmpty": "Không có chỉ số trong danh mục.",
+    "indicatorNoPoints": "Không có điểm dữ liệu cho chỉ số và lựa chọn khu vực này.",
+    "indicatorSubtitle": "Tần suất quan sát: {{periodType}}",
+    "indicatorSubtitlePlain": "So sánh theo thời gian giữa các khu vực"
+  }
+}

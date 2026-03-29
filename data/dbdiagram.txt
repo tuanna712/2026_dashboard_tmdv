@@ -1,0 +1,121 @@
+Table product {
+  prod_id int [pk]
+  prod_code varchar [unique]
+  prod_name varchar
+  group_code varchar
+}
+
+Table product_group {
+  group_code varchar [pk]
+  group_name varchar
+}
+  
+Table region {
+  region_code varchar [pk]
+  region_name varchar
+}
+
+Table price_source {
+  source_code varchar [pk]
+  name varchar
+}
+
+Table unit {
+  unit_code varchar [pk]
+  name varchar
+}
+
+Table currency {
+  currency_code varchar [pk]
+  name varchar
+}
+
+Table price_history {
+  id int [pk]
+  prod_code varchar
+  price decimal
+  currency varchar
+  unit varchar
+  date date
+  source varchar
+}
+
+Table price_forecast {
+  id int [pk]
+  prod_code varchar
+  forecast_price decimal
+  currency varchar
+  unit varchar
+  forecast_period varchar
+  source varchar
+  period_type varchar
+  created_at date
+}
+
+Table price_latest {
+  prod_code varchar [pk]
+  price decimal
+  currency_code varchar(50)
+  last_updated_at timestamp
+  value_change  decimal(18,4)
+  percentage_change decimal(5,2)
+  change_direction  varchar //'up' / 'down'
+}
+
+Table forecast_provider	{
+  forecast_provider_code varchar
+  forecast_provider_name varchar
+}
+
+Table indicator {
+  indicator_code varchar [pk]
+  name varchar
+  category varchar
+}
+
+Table indicator_data {
+  id int [pk]
+  indicator_code varchar
+  region_code varchar
+  value decimal
+  unit varchar
+  period varchar
+  period_type varchar
+}
+
+Table stock_index_master {
+  code varchar [pk]
+  name varchar
+  market varchar
+}
+
+Table stock_index_price {
+  id int [pk]
+  code varchar
+  date date
+  close decimal
+  currency varchar
+}
+
+/* ================= RELATIONSHIPS ================= */
+
+Ref: product.group_code > product_group.group_code
+
+Ref: price_history.prod_code > product.prod_code
+Ref: price_history.currency > currency.currency_code
+Ref: price_history.unit > unit.unit_code
+Ref: price_history.source > price_source.source_code
+
+Ref: price_forecast.prod_code > product.prod_code
+Ref: price_forecast.currency > currency.currency_code
+Ref: price_forecast.unit > unit.unit_code
+Ref: price_forecast.source > forecast_provider.forecast_provider_code
+
+Ref: price_latest.prod_code > product.prod_code
+Ref: price_latest.currency_code > currency.currency_code
+
+Ref: indicator_data.indicator_code > indicator.indicator_code
+Ref: indicator_data.region_code > region.region_code
+
+Ref: stock_index_price.code > stock_index_master.code
+Ref: stock_index_price.currency > currency.currency_code

@@ -1,0 +1,1 @@
+"""Newsletter dashboard FastAPI application."""

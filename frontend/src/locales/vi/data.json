@@ -1,0 +1,84 @@
+{
+  "product": {
+    "MOGAS95": "Xăng Mogas 95",
+    "MOGAS92": "Xăng Mogas 92",
+    "DO005S": "Dầu diesel 0,05% S",
+    "FO180CST": "Dầu nhiên liệu 180 CST",
+    "MARINE5": "Nhiên liệu tàu biển 5% S",
+    "DATEDBRENT": "Dated Brent",
+    "BRENTKH": "Brent KH",
+    "WTI": "Dầu thô WTI",
+    "BACHHO": "Dầu thô Bạch Hổ",
+    "RON95III": "Xăng RON 95-III",
+    "RON92II": "Xăng RON 92-II",
+    "DO005SII": "Dầu diesel 0,05% S-II",
+    "KO": "Dầu hỏa",
+    "UREPM": "Urê Phú Mỹ",
+    "URECM": "Urê Cà Mau",
+    "URENB": "Urê Ninh Bình",
+    "UREHB": "Urê Hà Bắc",
+    "RICE50404": "Gạo IR 50404",
+    "RICE5451": "Gạo OM 5451",
+    "RICEDT8": "Gạo Đài Thơm 8",
+    "COFFEE": "Cà phê",
+    "PEPPER": "Hồ tiêu",
+    "LPG": "LPG",
+    "NAPHTHA": "Naphtha",
+    "RON92": "Xăng RON 92",
+    "RON95": "Xăng RON 95",
+    "JET": "Nhiên liệu máy bay",
+    "DO10PPM": "Dầu diesel 10 ppm",
+    "GO005S": "Dầu gasoil 0,05% S",
+    "GO025S": "Dầu gasoil 0,25% S",
+    "VLSFO05S": "VLSFO 0,5% S",
+    "FO380CST": "Dầu nhiên liệu 380 CST",
+    "FERT-USA": "Phân bón Hoa Kỳ",
+    "FERT-EGY": "Phân bón Ai Cập",
+    "FERT-BRA": "Phân bón Brazil",
+    "FERT-CHIN": "Phân bón Trung Quốc"
+  },
+  "group": {
+    "FUEL": "Sản phẩm dầu tinh chế",
+    "CRUDE": "Dầu thô",
+    "AGRI": "Sản phẩm nông nghiệp",
+    "FERT": "Phân bón"
+  },
+  "forecastProvider": {
+    "WM": "Wood Mackenzie",
+    "EIA": "Cục Thông tin Năng lượng Hoa Kỳ (EIA)",
+    "REUTERS": "Thomson Reuters",
+    "VPI": "Viện Dầu khí Việt Nam (VPI)"
+  },
+  "periodType": {
+    "QUARTERLY": "Theo quý",
+    "MONTHLY": "Theo tháng",
+    "YEARLY": "Theo năm"
+  },
+  "stockIndex": {
+    "DJI": "Dow Jones",
+    "SPX": "S&P 500",
+    "COMP": "NASDAQ"
+  },
+  "indicator": {
+    "PMI": "PMI sản xuất",
+    "GDP_GROWTH": "Dự báo tăng trưởng GDP",
+    "INFLATION": "Dự báo lạm phát",
+    "CPI": "Chỉ số giá tiêu dùng"
+  },
+  "region": {
+    "USA": "Hoa Kỳ",
+    "CHN": "Trung Quốc",
+    "RUS": "Nga",
+    "GBR": "Vương quốc Anh",
+    "DEU": "Đức",
+    "FRA": "Pháp",
+    "CAN": "Canada",
+    "ITA": "Ý",
+    "JPN": "Nhật Bản",
+    "EU": "Liên minh châu Âu"
+  },
+  "priceSource": {
+    "DOM": "Trong nước",
+    "INTL": "Quốc tế"
+  }
+}

@@ -1,0 +1,827 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Financial Arboretum | Intelligence Dashboard</title>
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              background: "#f7f9fb",
+              "outline-variant": "#c1c9ba",
+              "primary-container": "#114f11",
+              "on-surface-variant": "#41493e",
+              "on-secondary-container": "#077323",
+              "on-secondary": "#ffffff",
+              "surface-dim": "#d8dadc",
+              "on-tertiary-fixed-variant": "#2b4f2e",
+              "on-primary-fixed": "#002201",
+              primary: "#003703",
+              "on-primary-container": "#81c175",
+              "secondary-fixed": "#98f897",
+              "on-primary-fixed-variant": "#155214",
+              "inverse-surface": "#2d3133",
+              tertiary: "#113518",
+              "primary-fixed-dim": "#95d788",
+              "on-secondary-fixed": "#002205",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#a8d1a7",
+              "surface-variant": "#e0e3e5",
+              outline: "#717a6c",
+              "error-container": "#ffdad6",
+              "surface-container-highest": "#e0e3e5",
+              "inverse-on-surface": "#eff1f3",
+              "on-secondary-fixed-variant": "#005316",
+              "on-error-container": "#93000a",
+              "surface-bright": "#f7f9fb",
+              "secondary-fixed-dim": "#7ddb7e",
+              "on-tertiary-fixed": "#002107",
+              "surface-container-lowest": "#ffffff",
+              "on-background": "#191c1e",
+              "surface-container-low": "#f2f4f6",
+              error: "#ba1a1a",
+              "inverse-primary": "#95d788",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#eceef0",
+              "secondary-container": "#96f595",
+              "surface-container-high": "#e6e8ea",
+              surface: "#f7f9fb",
+              secondary: "#006e20",
+              "tertiary-container": "#284c2c",
+              "on-tertiary-container": "#94bc93",
+              "on-surface": "#191c1e",
+              "tertiary-fixed": "#c4edc2",
+              "on-error": "#ffffff",
+              "surface-tint": "#2f6b2a",
+              "primary-fixed": "#b1f3a2",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-headline {
+        font-family: "Manrope", sans-serif;
+      }
+      /* Glassmorphism utility */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-background overflow-hidden flex h-screen">
+    <!-- SIDE NAVIGATION (Shared Component Implementation) -->
+    <aside
+      class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 z-40 bg-[#f2f4f6] dark:bg-slate-900 p-4 gap-2 border-r border-slate-200/50 dark:border-slate-800/50"
+    >
+      <div class="flex items-center gap-3 px-2 mb-8">
+        <div
+          class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center"
+        >
+          <span
+            class="material-symbols-outlined text-white text-sm"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >architecture</span
+          >
+        </div>
+        <div>
+          <h1
+            class="font-headline font-bold text-lg text-[#114f11] dark:text-emerald-500 leading-none"
+          >
+            Trace and Services Portal
+          </h1>
+        </div>
+      </div>
+      <nav class="flex-1 flex flex-col gap-1">
+        <!-- Active Tab: Dashboard -->
+        <a
+          class="flex items-center gap-3 px-3 py-2 bg-white dark:bg-slate-800 text-[#114f11] dark:text-emerald-400 rounded-lg shadow-sm font-semibold transition-all scale-95"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]">dashboard</span>
+          <span class="text-sm">Dashboard</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/10 hover:translate-x-1 transition-transform duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]">mail</span>
+          <span class="text-sm">Newsletter</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/10 hover:translate-x-1 transition-transform duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]">trending_up</span>
+          <span class="text-sm">Market Trends</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/10 hover:translate-x-1 transition-transform duration-200"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]">assessment</span>
+          <span class="text-sm">Reports</span>
+        </a>
+      </nav>
+    </aside>
+    <!-- MAIN CANVAS -->
+    <main class="flex-1 ml-0 md:ml-64 flex flex-col overflow-hidden">
+      <!-- TOP APP BAR (Shared Component Implementation) -->
+      <header
+        class="flex justify-between items-center w-full px-6 py-3 border-b border-slate-200/50 bg-[#f7f9fb] dark:bg-slate-950 z-50"
+      >
+        <div class="flex items-center gap-8">
+          <div
+            class="text-xl font-bold tracking-tighter text-[#114f11] dark:text-emerald-500 font-headline"
+          >
+            Market Insights
+          </div>
+          <nav class="hidden md:flex gap-6">
+            <a
+              class="font-['Manrope'] font-bold text-sm tracking-tight text-[#114f11] dark:text-emerald-400 border-b-2 border-[#114f11] pb-1"
+              href="#"
+              >International</a
+            >
+            <a
+              class="font-['Manrope'] font-bold text-sm tracking-tight text-slate-500 dark:text-slate-400 hover:text-[#114f11]"
+              href="#"
+              >Domestic</a
+            >
+          </nav>
+        </div>
+        <div class="flex items-center gap-4">
+          <button
+            class="p-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors rounded-full"
+          >
+            <button id="theme-toggle-btn" class="p-0 m-0 bg-transparent border-none outline-none">
+              <span id="theme-icon" class="material-symbols-outlined">light_mode</span>
+            </button>
+          </button>
+        </div>
+      </header>
+      <!-- DASHBOARD CONTENT AREA -->
+      <div
+        class="flex-1 overflow-y-auto p-6 bg-surface grid grid-cols-12 gap-6"
+      >
+        <!-- LEFT COLUMN: PRICING TABLES -->
+        <section class="col-span-12 lg:col-span-3 flex flex-col gap-6">
+        <!-- CRUDE OIL PRICING TABLES -->
+          <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm">
+            <h2
+              class="font-headline font-bold text-sm text-primary mb-4 flex items-center justify-between"
+            >
+              Crude Oil
+            </h2>
+            <div class="space-y-3">
+              <!-- Pricing Row Item -->
+              <div
+                class="flex flex-col gap-1 p-2 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group"
+              >
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-semibold text-on-surface"
+                    >Crude Oil (WTI)</span
+                  >
+                  <span class="text-xs font-bold font-headline">$74.12</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="flex items-center text-[10px] font-bold text-secondary bg-secondary-fixed/30 px-1.5 py-0.5 rounded"
+                  >
+                    <span class="material-symbols-outlined text-[12px] mr-0.5"
+                      >trending_up</span
+                    >+1.22
+                  </span>
+                  <span
+                    class="text-[10px] font-medium text-secondary-fixed-variant"
+                    >+1.2%</span
+                  >
+                  <span
+                    class="ml-auto text-[9px] text-outline-variant font-medium"
+                    >25/03/2026</span
+                  >
+                </div>
+              </div>
+
+              <div
+                class="flex flex-col gap-1 p-2 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group"
+              >
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-semibold text-on-surface"
+                    >Dated Brent</span
+                  >
+                  <span class="text-xs font-bold font-headline">$80.00</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="flex items-center text-[10px] font-bold text-error bg-error-container/40 px-1.5 py-0.5 rounded"
+                  >
+                    <span class="material-symbols-outlined text-[12px] mr-0.5"
+                      >trending_down</span
+                    >-2.45
+                  </span>
+                  <span
+                    class="text-[10px] font-medium text-error-container-variant"
+                    >-0.4%</span
+                  >
+                  <span
+                    class="ml-auto text-[9px] text-outline-variant font-medium"
+                    >25/03/2026</span
+                  >
+                </div>
+              </div>
+              
+            </div>
+
+            
+            <!-- FUEL PRICING TABLES -->
+            <div class="my-4"></div>
+            <h2
+              class="font-headline font-bold text-sm text-primary mb-4 flex items-center justify-between"
+            >
+              Fuel
+            </h2>
+            <div class="space-y-3">
+              <!-- Pricing Row Item -->
+              <div
+                class="flex flex-col gap-1 p-2 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group"
+              >
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-semibold text-on-surface"
+                    >Mogas 95</span
+                  >
+                  <span class="text-xs font-bold font-headline">$74.12</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="flex items-center text-[10px] font-bold text-secondary bg-secondary-fixed/30 px-1.5 py-0.5 rounded"
+                  >
+                    <span class="material-symbols-outlined text-[12px] mr-0.5"
+                      >trending_up</span
+                    >+1.22
+                  </span>
+                  <span
+                    class="text-[10px] font-medium text-secondary-fixed-variant"
+                    >+1.2%</span
+                  >
+                  <span
+                    class="ml-auto text-[9px] text-outline-variant font-medium"
+                    >25/03/2026</span
+                  >
+                </div>
+              </div>
+              <div
+                class="flex flex-col gap-1 p-2 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group"
+              >
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-semibold text-on-surface"
+                    >Mogas 92</span
+                  >
+                  <span class="text-xs font-bold font-headline">$585.00</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="flex items-center text-[10px] font-bold text-error bg-error-container/40 px-1.5 py-0.5 rounded"
+                  >
+                    <span class="material-symbols-outlined text-[12px] mr-0.5"
+                      >trending_down</span
+                    >-2.45
+                  </span>
+                  <span
+                    class="text-[10px] font-medium text-error-container-variant"
+                    >-0.4%</span
+                  >
+                  <span
+                    class="ml-auto text-[9px] text-outline-variant font-medium"
+                    >25/03/2026</span
+                  >
+                </div>
+              </div>
+              <div
+                class="flex flex-col gap-1 p-2 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group"
+              >
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-semibold text-on-surface"
+                    >Diesel 0.05% S</span
+                  >
+                  <span class="text-xs font-bold font-headline">$2.84</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="flex items-center text-[10px] font-bold text-secondary bg-secondary-fixed/30 px-1.5 py-0.5 rounded"
+                  >
+                    <span class="material-symbols-outlined text-[12px] mr-0.5"
+                      >trending_up</span
+                    >+0.08
+                  </span>
+                  <span
+                    class="text-[10px] font-medium text-secondary-fixed-variant"
+                    >+2.9%</span
+                  >
+                  <span
+                    class="ml-auto text-[9px] text-outline-variant font-medium"
+                    >25/03/2026</span
+                  >
+                </div>
+              </div>
+              <div
+                class="flex flex-col gap-1 p-2 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group"
+              >
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-semibold text-on-surface"
+                    >Fuel Oil 180 CST</span
+                  >
+                  <span class="text-xs font-bold font-headline">$112.50</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="flex items-center text-[10px] font-bold text-on-surface-variant bg-surface-container/50 px-1.5 py-0.5 rounded"
+                  >
+                    <span class="material-symbols-outlined text-[12px] mr-0.5"
+                      >horizontal_rule</span
+                    >0.00
+                  </span>
+                  <span class="text-[10px] font-medium text-outline">0.0%</span>
+                  <span
+                    class="ml-auto text-[9px] text-outline-variant font-medium"
+                    >24/03/2026</span
+                  >
+                </div>
+              </div>
+              <div
+                class="flex flex-col gap-1 p-2 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group"
+              >
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-semibold text-on-surface"
+                    >Marine Fuel 5% S</span
+                  >
+                  <span class="text-xs font-bold font-headline">$410.00</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="flex items-center text-[10px] font-bold text-error bg-error-container/40 px-1.5 py-0.5 rounded"
+                  >
+                    <span class="material-symbols-outlined text-[12px] mr-0.5"
+                      >trending_down</span
+                    >-5.00
+                  </span>
+                  <span
+                    class="text-[10px] font-medium text-error-container-variant"
+                    >-1.2%</span
+                  >
+                  <span
+                    class="ml-auto text-[9px] text-outline-variant font-medium"
+                    >23/03/2026</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- FERTILIZER PRICING TABLES -->
+            <div class="my-4"></div>
+            <h2
+              class="font-headline font-bold text-sm text-primary mb-4 flex items-center justify-between"
+            >
+              Fertilizer
+            </h2>
+            <div class="space-y-3">
+
+
+            <!-- AGRICULTURAL PRODUCT PRICING TABLES -->
+            <div class="my-4"></div>
+            <h2
+              class="font-headline font-bold text-sm text-primary mb-4 flex items-center justify-between"
+            >
+              Agricultural Product
+            </h2>
+            <div class="space-y-3">
+          </div>
+        </section>
+
+        <!-- CENTER COLUMN: PREDICTIVE ANALYTICS -->
+        <section class="col-span-12 lg:col-span-6 flex flex-col gap-6">
+          <!-- HISTORICAL PRICE CHART -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-6 shadow-sm relative overflow-hidden"
+          >
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <h2 class="font-headline font-bold text-lg text-primary">
+                  Crude Oil Historical Price
+                </h2>
+              </div>
+            </div>
+            <!-- CHART AREA: dummy series — replace CRUDE_OIL_CHART_DATA via API later -->
+            <div
+              class="relative h-72 w-full bg-surface-container-low/30 rounded-lg p-4 border border-outline-variant/10"
+            >
+              <svg
+                id="crude-oil-price-chart"
+                class="w-full h-full block"
+                viewBox="0 0 800 280"
+                preserveAspectRatio="xMidYMid meet"
+                role="img"
+                aria-label="Crude oil grades price over time"
+              ></svg>
+              <div
+                class="absolute bottom-3 right-3 flex flex-wrap justify-end gap-x-4 gap-y-2 max-w-[min(100%,22rem)] bg-white/80 backdrop-blur p-2 rounded-lg text-[9px] font-bold uppercase tracking-widest border border-outline-variant/10"
+              >
+                <div class="flex items-center gap-1.5">
+                  <span class="w-4 h-0.5 bg-primary rounded shrink-0"></span>
+                  Dated Brent
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span
+                    class="w-4 h-0.5 bg-secondary rounded shrink-0"
+                  ></span>
+                  Brent KH
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <svg
+                    class="w-4 h-2 shrink-0"
+                    viewBox="0 0 16 4"
+                    aria-hidden="true"
+                  >
+                    <line
+                      x1="0"
+                      y1="2"
+                      x2="16"
+                      y2="2"
+                      stroke="#114f11"
+                      stroke-width="2"
+                      stroke-dasharray="4 2"
+                    ></line>
+                  </svg>
+                  WTI Crude Oil
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <svg
+                    class="w-4 h-2 shrink-0"
+                    viewBox="0 0 16 4"
+                    aria-hidden="true"
+                  >
+                    <line
+                      x1="0"
+                      y1="2"
+                      x2="16"
+                      y2="2"
+                      stroke="#284c2c"
+                      stroke-width="2"
+                      stroke-dasharray="1 3"
+                    ></line>
+                  </svg>
+                  Bach Ho Oil
+                </div>
+              </div>
+              <script>
+                (function () {
+                  var NS = "http://www.w3.org/2000/svg";
+                  var svg = document.getElementById("crude-oil-price-chart");
+                  if (!svg) return;
+
+                  var CRUDE_OIL_CHART_DATA = {
+                    dates: [
+                      "2026-01-06",
+                      "2026-01-13",
+                      "2026-01-20",
+                      "2026-01-27",
+                      "2026-02-03",
+                      "2026-02-10",
+                      "2026-02-17",
+                      "2026-02-24",
+                    ],
+                    series: [
+                      {
+                        id: "datedBrent",
+                        label: "Dated Brent",
+                        prices: [78.4, 79.2, 77.1, 80.6, 81.3, 79.8, 82.5, 83.9],
+                        color: "#003703",
+                        strokeWidth: 2.5,
+                        dash: null,
+                      },
+                      {
+                        id: "brentKh",
+                        label: "Brent KH",
+                        prices: [77.8, 78.5, 76.4, 79.9, 80.7, 79.1, 81.4, 82.6],
+                        color: "#006e20",
+                        strokeWidth: 2,
+                        dash: null,
+                      },
+                      {
+                        id: "wti",
+                        label: "WTI Crude Oil",
+                        prices: [73.9, 75.1, 72.8, 75.7, 76.4, 74.9, 77.2, 78.0],
+                        color: "#114f11",
+                        strokeWidth: 2,
+                        dash: "6 4",
+                      },
+                      {
+                        id: "bachHo",
+                        label: "Bach Ho Oil",
+                        prices: [71.2, 72.5, 70.6, 73.1, 73.8, 72.0, 74.3, 75.1],
+                        color: "#284c2c",
+                        strokeWidth: 2,
+                        dash: "2 4",
+                      },
+                    ],
+                  };
+
+                  var W = 800;
+                  var H = 280;
+                  var M = { l: 56, r: 20, t: 18, b: 48 };
+                  var pw = W - M.l - M.r;
+                  var ph = H - M.t - M.b;
+                  var dates = CRUDE_OIL_CHART_DATA.dates;
+                  var series = CRUDE_OIL_CHART_DATA.series;
+                  var all = [];
+                  for (var s = 0; s < series.length; s++)
+                    for (var p = 0; p < series[s].prices.length; p++)
+                      all.push(series[s].prices[p]);
+                  var pMin = Math.min.apply(null, all);
+                  var pMax = Math.max.apply(null, all);
+                  var pad = (pMax - pMin) * 0.08 || 2;
+                  pMin = Math.floor(pMin - pad);
+                  pMax = Math.ceil(pMax + pad);
+                  if (pMin === pMax) {
+                    pMin -= 1;
+                    pMax += 1;
+                  }
+
+                  function xAt(i) {
+                    var n = dates.length;
+                    if (n <= 1) return M.l + pw / 2;
+                    return M.l + (i / (n - 1)) * pw;
+                  }
+                  function yAt(price) {
+                    return (
+                      M.t + ph - ((price - pMin) / (pMax - pMin)) * ph
+                    );
+                  }
+                  function el(name, attrs) {
+                    var node = document.createElementNS(NS, name);
+                    if (attrs)
+                      Object.keys(attrs).forEach(function (k) {
+                        node.setAttribute(k, attrs[k]);
+                      });
+                    return node;
+                  }
+                  function fmtShort(iso) {
+                    var d = new Date(iso + "T12:00:00");
+                    if (isNaN(d.getTime())) return iso;
+                    return d.toLocaleDateString(undefined, {
+                      month: "short",
+                      day: "numeric",
+                    });
+                  }
+
+                  var gGrid = el("g", { class: "chart-grid" });
+                  var tickCount = 5;
+                  for (var t = 0; t <= tickCount; t++) {
+                    var val = pMin + (t / tickCount) * (pMax - pMin);
+                    var y = yAt(val);
+                    gGrid.appendChild(
+                      el("line", {
+                        x1: M.l,
+                        y1: y,
+                        x2: M.l + pw,
+                        y2: y,
+                        stroke: "#c1c9ba",
+                        "stroke-opacity": "0.35",
+                        "stroke-width": "1",
+                      }),
+                    );
+                    gGrid.appendChild(
+                      el("text", {
+                        x: M.l - 8,
+                        y: y + 4,
+                        fill: "#717a6c",
+                        "font-size": "10",
+                        "font-family": "Inter, sans-serif",
+                        "text-anchor": "end",
+                      }),
+                    ).textContent = val.toFixed(0);
+                  }
+
+                  var gAxes = el("g", { class: "chart-axes" });
+                  gAxes.appendChild(
+                    el("line", {
+                      x1: M.l,
+                      y1: M.t + ph,
+                      x2: M.l + pw,
+                      y2: M.t + ph,
+                      stroke: "#717a6c",
+                      "stroke-width": "1",
+                    }),
+                  );
+                  gAxes.appendChild(
+                    el("line", {
+                      x1: M.l,
+                      y1: M.t,
+                      x2: M.l,
+                      y2: M.t + ph,
+                      stroke: "#717a6c",
+                      "stroke-width": "1",
+                    }),
+                  );
+
+                  var step = Math.max(1, Math.ceil(dates.length / 6));
+                  for (var i = 0; i < dates.length; i += step) {
+                    var x = xAt(i);
+                    var label = el("text", {
+                      x: x,
+                      y: H - 14,
+                      fill: "#717a6c",
+                      "font-size": "10",
+                      "font-family": "Inter, sans-serif",
+                      "text-anchor": "middle",
+                    });
+                    label.textContent = fmtShort(dates[i]);
+                    gAxes.appendChild(label);
+                  }
+
+                  var yTitle = el("text", {
+                    x: 14,
+                    y: M.t + ph / 2,
+                    fill: "#41493e",
+                    "font-size": "11",
+                    "font-family": "Inter, sans-serif",
+                    "font-weight": "600",
+                    transform:
+                      "rotate(-90 " + 14 + " " + (M.t + ph / 2) + ")",
+                    "text-anchor": "middle",
+                  });
+                  yTitle.textContent = "Price (USD/bbl)";
+
+                  var xTitle = el("text", {
+                    x: M.l + pw / 2,
+                    y: H - 2,
+                    fill: "#41493e",
+                    "font-size": "11",
+                    "font-family": "Inter, sans-serif",
+                    "font-weight": "600",
+                    "text-anchor": "middle",
+                  });
+                  xTitle.textContent = "Date";
+
+                  var gSeries = el("g", { class: "chart-series" });
+                  for (var si = 0; si < series.length; si++) {
+                    var ser = series[si];
+                    var pts = [];
+                    for (var j = 0; j < ser.prices.length; j++)
+                      pts.push(xAt(j) + "," + yAt(ser.prices[j]));
+                    var poly = el("polyline", {
+                      fill: "none",
+                      stroke: ser.color,
+                      "stroke-width": ser.strokeWidth,
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      points: pts.join(" "),
+                    });
+                    if (ser.dash) poly.setAttribute("stroke-dasharray", ser.dash);
+                    poly.setAttribute("data-series", ser.id);
+                    gSeries.appendChild(poly);
+                  }
+
+                  svg.appendChild(gGrid);
+                  svg.appendChild(gSeries);
+                  svg.appendChild(gAxes);
+                  svg.appendChild(yTitle);
+                  svg.appendChild(xTitle);
+                })();
+              </script>
+            </div>
+          </div>
+
+          <!-- HISTORICAL PRICE CHART -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-6 shadow-sm relative overflow-hidden"
+          >
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <h2 class="font-headline font-bold text-lg text-primary">
+                  Fuel Price
+                </h2>
+              </div>
+            </div>
+            <!-- CHART AREA -->
+            <!-- Placeholder for the chart -->
+          </div>
+
+          <!-- HISTORICAL PRICE CHART -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-6 shadow-sm relative overflow-hidden"
+          >
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <h2 class="font-headline font-bold text-lg text-primary">
+                  Fertilizer Price
+                </h2>
+              </div>
+            </div>
+            <!-- CHART AREA -->
+            <!-- Placeholder for the chart -->
+          </div>
+
+          <!-- HISTORICAL PRICE CHART -->
+          <div
+            class="bg-surface-container-lowest rounded-xl p-6 shadow-sm relative overflow-hidden"
+          >
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <h2 class="font-headline font-bold text-lg text-primary">
+                  Agriculture Price
+                </h2>
+              </div>
+            </div>
+            <!-- CHART AREA -->
+            <!-- Placeholder for the chart -->
+          </div>
+
+        </section>
+        <!-- RIGHT COLUMN: ECONOMIC INDICES & HEATMAP -->
+        <section class="col-span-12 lg:col-span-3 flex flex-col gap-6">
+          <!-- ECONOMIC INDICES -->
+          <div class="bg-surface-container-low rounded-xl p-4">
+            <h2 class="font-headline font-bold text-sm text-primary mb-4">
+              Predictive Price Forecasting
+            </h2>
+            <div class="space-y-4">
+              <!-- PRODUCT 1 -->
+              <div
+                class="flex justify-between items-end border-b border-outline-variant/10 pb-2"
+              >
+                <div>
+                  <p class="text-[10px] font-bold text-outline uppercase">
+                    price_forecast.prod_code
+                  </p>
+                  <p class="text-[9px] text-outline-variant">price_forecast.forecast_provider</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[10px] font-bold text-primary">price_forecast.forecast_price</p>
+                  <p class="text-[9px] text-outline-variant">price_forecast.period</p>
+                </div>
+              </div>
+              <!-- PRODUCT 2 -->
+              <div
+                class="flex justify-between items-end border-b border-outline-variant/10 pb-2"
+              >
+                <div>
+                  <p class="text-[10px] font-bold text-outline uppercase">
+                    price_forecast.prod_code
+                  </p>
+                  <p class="text-[9px] text-outline-variant">price_forecast.forecast_provider</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[10px] font-bold text-primary">price_forecast.forecast_price</p>
+                  <p class="text-[9px] text-outline-variant">price_forecast.period</p>
+                </div>
+              </div>
+              <!-- PRODUCT 3 -->
+
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

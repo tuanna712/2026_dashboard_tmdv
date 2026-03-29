@@ -1,0 +1,33 @@
+# Frontend: host port 3894 → nginx in container (static UI + reverse proxy to backend).
+# Backend: host port 3895 → FastAPI (PostgreSQL is NOT started here; set DATABASE_* in `.env`).
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tmdv-newsletter-backend
+    ports:
+      - "3895:8000"
+    env_file:
+      - .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Empty = browser calls /api on the same origin; nginx forwards to `backend:8000`.
+        VITE_API_URL: ""
+    container_name: tmdv-newsletter-frontend
+    ports:
+      - "3894:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+networks:
+  default:
+    name: tmdv-newsletter-net
