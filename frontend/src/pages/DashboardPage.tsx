@@ -40,6 +40,7 @@ export function DashboardPage({ market }: { market: Market }) {
           <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-gutter:stable]">
             <PricingSidebar
               data={pricingQuery.data}
+              market={market}
               isLoading={pricingQuery.isLoading}
               isError={pricingQuery.isError}
               error={pricingQuery.error as Error | null}

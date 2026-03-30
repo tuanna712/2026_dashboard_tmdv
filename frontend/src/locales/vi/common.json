@@ -3,14 +3,14 @@
     "title": "Ban Thương mại Dịch vụ | Thông tin thị trường"
   },
   "app": {
-    "brand": "Thông tin Thương mại Dịch vụ",
-    "brandShort": "Ban Thương mại Dịch vụ",
+    "brand": "Thông tin Thị trường Tổng hợp",
+    "brandShort": "Thông tin Thị trường Tổng hợp",
     "marketInsights": "Thông tin thị trường"
   },
   "nav": {
-    "dashboard": "Bảng điều khiển",
-    "newsletter": "Bản tin",
-    "trends": "Xu hướng", 
+    "dashboard": "Tổng quan",
+    "newsletter": "Diễn biến thị trường",
+    "trends": "Thông tin vĩ mô", 
     "reports": "Báo cáo"
   },
   "market": {
@@ -39,8 +39,8 @@
     "range3m": "3m",
     "range6m": "6m",
     "range1y": "1y",
-    "crude": "Giá dầu thô lịch sử",
-    "fuel": "Giá nhiên liệu",
+    "crude": "Diễn biến giá dầu thô",
+    "fuel": "Giá sản phẩm dầu",
     "fert": "Giá phân bón",
     "agri": "Giá nông sản",
     "retry": "Thử lại",
@@ -65,14 +65,14 @@
     "retry": "Thử lại"
   },
   "placeholder": {
-    "notImplemented": "Phần này chưa được triển khai."
+    "notImplemented": "Tính năng đang trong giai đoạn phát triển."
   },
   "trends": {
-    "pageTitle": "Xu hướng thị trường",
+    "pageTitle": "Thông tin vĩ mô",
     "pageSubtitle": "Chỉ số cổ phiếu chính (giá đóng cửa) và chỉ số vĩ mô theo quốc gia/khu vực.",
-    "stocksTitle": "Chỉ số cổ phiếu",
+    "stocksTitle": "Các chỉ số chứng khoán Mỹ",
     "stocksSubtitleRebased": "Giá đóng cửa",
-    "stocksSubtitleAbsolute": "Giá đóng tuyệt đối — mỗi chỉ số một thang đứng riêng.",
+    "stocksSubtitleAbsolute": "Giá đóng cửa",
     "stocksScaleMode": "Thang biểu đồ",
     "stocksModeRebased": "Tương đối",
     "stocksModeAbsolute": "Tuyệt đối",

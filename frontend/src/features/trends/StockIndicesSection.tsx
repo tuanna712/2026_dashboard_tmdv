@@ -1,11 +1,10 @@
 import type { TFunction } from "i18next";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { ChartDateRangeButtons } from "@/components/ChartDateRangeButtons";
 import type { ChartDateRangePreset } from "@/utils/chartDateRange";
 import {
   CartesianGrid,
-  Legend,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -18,7 +17,6 @@ import { useTheme } from "@/hooks/useTheme";
 import { tStockIndex } from "@/utils/localizedEntity";
 
 const SERIES_COLORS = ["#003703", "#006e20", "#114f11", "#284c2c", "#113518"];
-const DASH_BY_INDEX: (string | undefined)[] = [undefined, undefined, "7 4", "3 4", "6 3"];
 
 export type StockIndexPriceSlice = {
   code: string;
@@ -250,13 +248,12 @@ export function StockIndicesSection({
   const { dark } = useTheme();
   const { t, i18n } = useTranslation();
   const locale = i18n.language;
-  const [mode, setMode] = useState<"rebased" | "absolute">("rebased");
 
   const anyPriceLoading = slices.some((s) => s.isLoading);
   const priceErrors = slices.filter((s) => s.error);
   const chartModel = useMemo(
-    () => buildRows(slices, mode, locale, t),
-    [slices, mode, locale, t],
+    () => buildRows(slices, "absolute", locale, t),
+    [slices, locale, t],
   );
 
   const gridStroke = dark ? "#334155" : "#e2e8f0";
@@ -364,7 +361,7 @@ export function StockIndicesSection({
     );
   }
 
-  const { rows, seriesList, yMin, yMax, span, perCodeAbsolute } = chartModel;
+  const { rows, seriesList, perCodeAbsolute } = chartModel;
   const ariaSeries = seriesList.map((s) => s.displayName).join(", ");
 
   return (
@@ -373,38 +370,8 @@ export function StockIndicesSection({
         <div>
           <h2 className="font-headline font-bold text-lg text-primary">{t("trends.stocksTitle")}</h2>
           <p className="text-[11px] text-on-surface-variant mt-0.5">
-            {mode === "rebased" ? t("trends.stocksSubtitleRebased") : t("trends.stocksSubtitleAbsolute")}
+            {t("trends.stocksSubtitleAbsolute")}
           </p>
-        </div>
-        <div
-          className="flex rounded-lg border border-outline-variant/20 p-0.5 shrink-0"
-          role="group"
-          aria-label={t("trends.stocksScaleMode")}
-        >
-          <button
-            type="button"
-            onClick={() => setMode("rebased")}
-            className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
-              mode === "rebased"
-                ? "bg-primary text-on-primary"
-                : "text-slate-600 dark:text-slate-400 hover:bg-emerald-50/80 dark:hover:bg-emerald-900/20"
-            }`}
-            aria-pressed={mode === "rebased"}
-          >
-            {t("trends.stocksModeRebased")}
-          </button>
-          <button
-            type="button"
-            onClick={() => setMode("absolute")}
-            className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
-              mode === "absolute"
-                ? "bg-primary text-on-primary"
-                : "text-slate-600 dark:text-slate-400 hover:bg-emerald-50/80 dark:hover:bg-emerald-900/20"
-            }`}
-            aria-pressed={mode === "absolute"}
-          >
-            {t("trends.stocksModeAbsolute")}
-          </button>
         </div>
       </header>
 
@@ -417,136 +384,57 @@ export function StockIndicesSection({
         role="img"
         aria-label={`${t("trends.stocksTitle")}. ${ariaSeries}`}
       >
-        {mode === "rebased" ? (
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={rows} margin={{ top: 8, right: 12, left: 0, bottom: 8 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} vertical={false} />
-              <XAxis
-                dataKey="dateLabel"
-                tick={{ fontSize: 10, fill: tickFill, fontWeight: 500 }}
-                tickLine={{ stroke: tickFill }}
-                axisLine={{ stroke: gridStroke }}
-                interval="preserveStartEnd"
-                minTickGap={28}
-              />
-              <YAxis
-                domain={[yMin, yMax]}
-                tickFormatter={(v) => formatAxis(Number(v), span, locale)}
-                tick={{ fontSize: 10, fill: tickFill, fontWeight: 500 }}
-                tickLine={{ stroke: tickFill }}
-                axisLine={{ stroke: gridStroke }}
-                width={52}
-              />
-              <Tooltip
-                contentStyle={{
-                  fontSize: 12,
-                  borderRadius: 8,
-                  border: `1px solid ${gridStroke}`,
-                }}
-                labelFormatter={(_, payload) => {
-                  const row = payload?.[0]?.payload as ChartRow | undefined;
-                  const iso = row?.dateIso;
-                  if (typeof iso !== "string") return "";
-                  const d = new Date(iso + (iso.length === 10 ? "T12:00:00" : ""));
-                  if (Number.isNaN(d.getTime())) return iso.slice(0, 10);
-                  return d.toLocaleDateString(locale, {
-                    weekday: "short",
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  });
-                }}
-                formatter={(value, name, item) => {
-                  const num = typeof value === "number" ? value : Number(value);
-                  const idxLabel = Number.isFinite(num) ? formatAxis(num, span, locale) : "—";
-                  const payload = item && typeof item === "object" && "payload" in item
-                    ? (item as { payload?: ChartRow }).payload
-                    : undefined;
-                  const raw = payload?._raw as Record<string, { close: string; currency: string | null }> | undefined;
-                  const code = seriesList.find((s) => s.displayName === name)?.code;
-                  const extra =
-                    code && raw?.[code]
-                      ? ` (${raw[code].close}${raw[code].currency ? ` ${raw[code].currency}` : ""})`
-                      : "";
-                  return [`${idxLabel}${extra}`, String(name)];
-                }}
-              />
-              <Legend
-                verticalAlign="bottom"
-                wrapperStyle={{ fontSize: 11, fontWeight: 600, paddingTop: 6 }}
-              />
-              {seriesList.map((s, si) => {
-                const dash = DASH_BY_INDEX[si % DASH_BY_INDEX.length];
-                return (
+        <div className="flex flex-col gap-4 p-2">
+          {perCodeAbsolute?.map((meta, si) => (
+            <div key={meta.code}>
+              <p className="text-[11px] font-semibold text-on-surface-variant mb-1 px-1">{meta.displayName}</p>
+              <ResponsiveContainer width="100%" height={140}>
+                <LineChart data={rows} margin={{ top: 4, right: 8, left: 0, bottom: 4 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} vertical={false} />
+                  <XAxis
+                    dataKey="dateLabel"
+                    tick={{ fontSize: 9, fill: tickFill, fontWeight: 500 }}
+                    tickLine={{ stroke: tickFill }}
+                    axisLine={{ stroke: gridStroke }}
+                    interval="preserveStartEnd"
+                    minTickGap={24}
+                  />
+                  <YAxis
+                    domain={[meta.yMin, meta.yMax]}
+                    tickFormatter={(v) => formatAxis(Number(v), meta.span, locale)}
+                    tick={{ fontSize: 9, fill: tickFill, fontWeight: 500 }}
+                    tickLine={{ stroke: tickFill }}
+                    axisLine={{ stroke: gridStroke }}
+                    width={48}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      fontSize: 11,
+                      borderRadius: 8,
+                      border: `1px solid ${gridStroke}`,
+                    }}
+                    formatter={(value) => {
+                      const num = typeof value === "number" ? value : Number(value);
+                      return [
+                        Number.isFinite(num) ? formatAxis(num, meta.span, locale) : "—",
+                        meta.displayName,
+                      ];
+                    }}
+                  />
                   <Line
-                    key={s.code}
                     type="monotone"
-                    dataKey={s.code}
-                    name={s.displayName}
+                    dataKey={meta.code}
                     stroke={SERIES_COLORS[si % SERIES_COLORS.length]}
-                    strokeWidth={si === 0 ? 2.25 : 1.85}
-                    strokeDasharray={dash}
+                    strokeWidth={2}
                     dot={false}
                     connectNulls={false}
                     isAnimationActive={false}
                   />
-                );
-              })}
-            </LineChart>
-          </ResponsiveContainer>
-        ) : (
-          <div className="flex flex-col gap-4 p-2">
-            {perCodeAbsolute?.map((meta, si) => (
-              <div key={meta.code}>
-                <p className="text-[11px] font-semibold text-on-surface-variant mb-1 px-1">{meta.displayName}</p>
-                <ResponsiveContainer width="100%" height={140}>
-                  <LineChart data={rows} margin={{ top: 4, right: 8, left: 0, bottom: 4 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} vertical={false} />
-                    <XAxis
-                      dataKey="dateLabel"
-                      tick={{ fontSize: 9, fill: tickFill, fontWeight: 500 }}
-                      tickLine={{ stroke: tickFill }}
-                      axisLine={{ stroke: gridStroke }}
-                      interval="preserveStartEnd"
-                      minTickGap={24}
-                    />
-                    <YAxis
-                      domain={[meta.yMin, meta.yMax]}
-                      tickFormatter={(v) => formatAxis(Number(v), meta.span, locale)}
-                      tick={{ fontSize: 9, fill: tickFill, fontWeight: 500 }}
-                      tickLine={{ stroke: tickFill }}
-                      axisLine={{ stroke: gridStroke }}
-                      width={48}
-                    />
-                    <Tooltip
-                      contentStyle={{
-                        fontSize: 11,
-                        borderRadius: 8,
-                        border: `1px solid ${gridStroke}`,
-                      }}
-                      formatter={(value) => {
-                        const num = typeof value === "number" ? value : Number(value);
-                        return [
-                          Number.isFinite(num) ? formatAxis(num, meta.span, locale) : "—",
-                          meta.displayName,
-                        ];
-                      }}
-                    />
-                    <Line
-                      type="monotone"
-                      dataKey={meta.code}
-                      stroke={SERIES_COLORS[si % SERIES_COLORS.length]}
-                      strokeWidth={2}
-                      dot={false}
-                      connectNulls={false}
-                      isAnimationActive={false}
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            ))}
-          </div>
-        )}
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          ))}
+        </div>
       </div>
     </article>
   );
